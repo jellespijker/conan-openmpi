@@ -17,7 +17,7 @@ class OpenMPIConan(ConanFile):
     default_options = {'shared': False, 'fPIC': True, 'fortran': 'no'}
     _source_subfolder = "sources"
 
-    def config(self):
+    def config_options(self):
         del self.settings.compiler.libcxx
         del self.settings.compiler.cppstd
         if self.settings.os == "Windows":
@@ -25,6 +25,7 @@ class OpenMPIConan(ConanFile):
 
     def requirements(self):
         self.requires.add("zlib/1.2.11")
+        self.requires.add("libnl/3.2.25")
 
     def system_requirements(self):
         if self.settings.os == "Linux" and tools.os_info.is_linux:
